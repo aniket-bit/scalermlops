@@ -16,7 +16,7 @@ env:
   ECS_SERVICE: mlops
   ECS_CLUSTER: frugal-bee-f2fl61
   ECS_TASK_DEFINITION: task-definition.json
-  CONTAINER_NAME: scalermlopsloadmodel:1
+  CONTAINER_NAME: scalermlopsloadmodel
 
 jobs:
   ci:
