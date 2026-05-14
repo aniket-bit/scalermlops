@@ -1,16 +1,16 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:532320678422:task-definition/run_model:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:836095228779:task-definition/scalermlopsloadmodel:1",
     "containerDefinitions": [
         {
-            "name": "scalertest10",
-            "image": "532320678422.dkr.ecr.us-east-1.amazonaws.com/flask_app:latest",
+            "name": "scalermlopsloadmodel",
+            "image": "836095228779.dkr.ecr.us-east-1.amazonaws.com/scalermlops:latest",
             "cpu": 0,
             "portMappings": [
                 {
-                    "name": "scalertest10-5000-tcp",
                     "containerPort": 5000,
                     "hostPort": 5000,
                     "protocol": "tcp",
+                    "name": "scalermlopsloadmodel-5000-tcp",
                     "appProtocol": "http"
                 }
             ],
@@ -23,17 +23,19 @@
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
+                    "awslogs-group": "/ecs/scalermlopsloadmodel",
                     "awslogs-create-group": "true",
-                    "awslogs-group": "/ecs/run_model",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
                 },
                 "secretOptions": []
-            }
+            },
+            "systemControls": []
         }
     ],
-    "family": "run_model",
-    "executionRoleArn": "arn:aws:iam::532320678422:role/ecsTaskExecutionRole",
+    "family": "scalermlopsloadmodel",
+    "taskRoleArn": "arn:aws:iam::836095228779:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::836095228779:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "revision": 1,
     "volumes": [],
@@ -52,6 +54,9 @@
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
             "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
@@ -67,18 +72,20 @@
     "placementConstraints": [],
     "compatibilities": [
         "EC2",
-        "FARGATE"
+        "FARGATE",
+        "MANAGED_INSTANCES"
     ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
     "requiresCompatibilities": [
         "FARGATE"
     ],
     "cpu": "1024",
     "memory": "3072",
-    "runtimePlatform": {
-        "cpuArchitecture": "X86_64",
-        "operatingSystemFamily": "LINUX"
-    },
-    "registeredAt": "2024-02-01T14:26:02.824Z",
-    "registeredBy": "arn:aws:sts::532320678422:federated-user/subhodeep.dey_1@scaler.com",
+    "registeredAt": "2026-05-11T14:31:42.014Z",
+    "registeredBy": "arn:aws:iam::836095228779:root",
+    "enableFaultInjection": false,
     "tags": []
 }
